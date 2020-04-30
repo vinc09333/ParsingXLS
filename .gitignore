@@ -1,6 +1,2 @@
-/venv/pyvenv.cfg
-/venv/Scripts/
-/venv/Lib/
-/venv/Include/123.py
-venv/Include/tmp
+venv/Include/tmp/
 /.idea/
