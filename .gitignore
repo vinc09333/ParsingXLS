@@ -2,4 +2,5 @@
 /venv/Scripts/
 /venv/Lib/
 /venv/Include/123.py
-/.idea
+venv/Include/tmp
+/.idea/
