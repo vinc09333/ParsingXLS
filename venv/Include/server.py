@@ -1,12 +1,5 @@
-from flask import Flask
-from flask import request
-from flask import jsonify
-import socket
-import sys
-import os
-from ves import Run
-import access
-import cleaner
+from flask import Flask, request, jsonify
+import os, sys, socket, parsingxls
 oss = os.name
 app = Flask(__name__)
 
@@ -14,9 +7,8 @@ app = Flask(__name__)
 @app.route("/get_svin", methods=['POST', 'GET'])
 def svin():
     if request.method == 'GET':
-        if access.verify_ip(request.environ['REMOTE_ADDR']) == 1:
-            #cleaner.cleanTemp()
-            Run.run_operating('-s')
+        if parsingxls.verify_ip(request.environ['REMOTE_ADDR']) == 1:
+            parsingxls.run('-s')
             res = open('tmp/svin_res.r', mode='r+', encoding='utf-8')
             return res.read(), {'Content-Type': 'text/json'}
         else:
@@ -25,9 +17,8 @@ def svin():
 @app.route("/get_korm", methods=['POST', 'GET'])
 def korm():
     if request.method == 'GET':
-        if access.verify_ip(request.environ['REMOTE_ADDR']) == 1:
-            #cleaner.cleanTemp()
-            Run.run_operating('-k')
+        if parsingxls.verify_ip(request.environ['REMOTE_ADDR']) == 1:
+            parsingxls.run('-k')
             res = open('tmp/korm_res.r', mode='r+', encoding='utf-8')
             return res.read(),{'Content-Type': 'text/json'}
         else:
@@ -36,7 +27,7 @@ def korm():
 def cleantemp():
     if request.method == 'GET':
         if access.verify_ip(request.environ['REMOTE_ADDR']) == 1:
-            cleaner.cleanTemp()
+            parsingxls.cleaner()
 
 @app.route("/view_my_ip", methods=['POST', 'GET'])
 def viewip():
