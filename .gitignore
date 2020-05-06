@@ -1,3 +1,7 @@
 venv/Include/tmp
-/.idea/
+venv/Scripts
+/.idea
 venv/Include/ves
+.gitignore
+venv/pyvenv.cfg
+venv/Lib
